@@ -15,28 +15,31 @@
   <main class="container">
     <div class="header">
       <div class="input-container">
-        <label for="day">DAY</label>
-        <input type="text" id="day" placeholder="DD">
+        <h6>DAY</h6>
+        <input type="number" id="day" placeholder="DD">
+        <i><label for="day">This filed is required</label></i> 
       </div>
       <div class="input-container">
-        <label for="month">MONTH</label>
-        <input type="text" id="months" placeholder="MM">
+        <h6>MONTH</h6>
+        <input type="number" id="month" placeholder="MM">
+        <i><label for="month">This filed is required</label></i> 
       </div>
       <div class="input-container">
-        <label for="year">YEAR</label>
-        <input type="text" id="year" placeholder="YYYY">
+        <h6>YEAR</h6>
+        <input type="number" id="year" placeholder="YYYY">
+        <i><label for="year">This filed is required</label></i> 
       </div>
     </div>
 
     <div class="image-container">
-      <img src="../assets/images/icon-arrow.svg"  alt="image">
+      <img src="../assets/images/icon-arrow.svg"  alt="image" class="btn">
       <hr>
     </div>
 
     <div class="result">
-      <h2 class="input-text" ><i></i><span class="years input">-- </span>years</h2>
-      <h2 class="input-text"><span class="months input">-- </span>months</h2>
-      <h2 class="input-text"><span class="days input">-- </span>days</h2>
+      <h2 class="input-text"><span id="years" class="input">-- </span>years</h2>
+      <h2 class="input-text"><span id="months" class="input">-- </span>months</h2>
+      <h2 class="input-text"><span id="days" class="input">-- </span>days</h2>
     </div>
   </main>
 

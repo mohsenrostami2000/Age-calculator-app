@@ -8,16 +8,17 @@ const labels = document.querySelectorAll('label');
 const header = document.querySelectorAll('h6');
 const btn = document.querySelector('.btn');
 
+window.addEventListener('DOMContentLoaded', ()=>{
+checkValidation();
+click();
+})
 
-// add blur event to inputs 
-
+function checkValidation(){
+    // add blur event to inputs 
 for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('blur', () => {
-        let currentYear = new Date().getFullYear();
-        let currentMonth = new Date().getMonth() + 1;
-        let currentDay = new Date().getDate();
-        console.log(currentDay, currentMonth, currentYear)
-
+        const currentYear = new Date().getFullYear();
+        
         if (inputs[i].value !== "") {
                 hideError();
 
@@ -48,13 +49,10 @@ for (let i = 0; i < inputs.length; i++) {
                                 header[0].style.color = " var(--Light-red)";
                                 header[1].style.color = " var(--Light-red)";
                                 header[2].style.color = " var(--Light-red)";
-                                labels[0].innerText = "Must be a valid date"
+                                labels[0].innerText = "Must be a valid date";
+
                             }
                         } 
-
-                        
-
-
 
                     } else {
                     
@@ -72,9 +70,7 @@ for (let i = 0; i < inputs.length; i++) {
 
                         if (inputs[i].value < 10) {
                             inputs[i].value = `0${inputs[i].value}`;
-                        }
-
-                        
+                        } 
         
                     } else {
                         
@@ -125,12 +121,72 @@ for (let i = 0; i < inputs.length; i++) {
 
             };
         
-            btn.addEventListener('click', () => {
-                console.log('btn is working')
-                years.innerText = currentYear - inputs[i].value;
-                months.innerText = currentMonth - inputs[i].value;
-                days.innerText = currentDay - inputs[i].value;
-            })
+            
     })
 
+}
+}
+
+function click(){
+    // add event to btn
+btn.addEventListener('click', () => {
+    let day = document.getElementById('day');
+    let month = document.getElementById('month');
+    let year = document.getElementById('year');
+    // define birthday ---------------------------------------
+    const birthDay = `${month.value},${day.value},${year.value}`;
+    
+    let d1 = day.value;
+    let m1 = month.value;
+    let y1 = year.value;
+    // define today's date -----------------------
+    let today = new Date();
+    
+    let d2 = today.getDate();
+    let m2 = today.getMonth() + 1;
+    let y2 = today.getFullYear();
+    // calculate age -----------------------
+    let d3, m3, y3;
+
+    y3 = y2 -y1;
+
+    if(m2 > m1){
+        m3 = m2 - m1
+    }else{
+        y3--;
+        m3 = 12 + m2 - m1;
+    }
+
+    if(d2 > d1){
+        d3 = d2 - d1;
+    }else{
+        m3--;
+        d3 = getDaysInMonth(y1, m1) + d2 - d1;
+    }
+    
+    function getDaysInMonth(year, month){
+        return new Date(year, month, 0).getDate();
+    }
+
+    // show age ----------------------
+    if(day.value, month.value, year.value === ""){
+        alert('plese fill all inputs');
+        year.style.border = "2px solid var(--Light-red)"
+        month.style.border = "2px solid var(--Light-red)"
+        day.style.border = "2px solid var(--Light-red)" 
+        
+    }else{
+        years.innerText = y3;
+        months.innerText = m3;
+        days.innerText = d3;
+
+        if(month.value == 4 && day.value == 31){
+            
+            years.innerText = `--`;
+            months.innerText = `--`;
+            days.innerText = `--`;
+            
+        } 
+    }     
+});
 }
